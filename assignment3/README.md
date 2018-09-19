@@ -1,6 +1,4 @@
-## CS-554 Assignment 3 
-
-Compiling SASS and Bootstrap
+## CS-554 Assignment 3:  Compiling SASS and Bootstrap
 
 A product page featuring AI powered robotic companions to include in ones entourage and help fill various roles and functions.
 
