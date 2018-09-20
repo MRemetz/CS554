@@ -6,7 +6,7 @@ const constructorMethod = app => {
         memberData
             .getModals()
             .then(modals => {
-                res.render("members/single", { memberContent: modals });
+                res.render("members/single", { memberModals: modals });
             })
             .catch(() => {
                 res.status(404).json({ error: "Product not found" });
