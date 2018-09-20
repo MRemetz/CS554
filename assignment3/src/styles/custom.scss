@@ -43,19 +43,6 @@
  @import "print";
 
  */
-/*
-.card-columns {
-  @include media-breakpoint-only(lg) {
-    column-count: 3;
-  }
-  @include media-breakpoint-only(md) {
-    column-count: 2;
-  }
-  @include media-breakpoint-only(sm) {
-    column-count: 1;
-  }
-}
-*/
 
 @mixin border-bottom($size) {
   border-bottom: $size solid #000;
@@ -75,7 +62,12 @@ html {
 }
 
 p {
-  font-size: $secondary-font-size;
+    font-size: $secondary-font-size;
+    color: $brand-secondary;
+}
+
+h4 {
+    color: lighten($brand-secondary, 20%);
 }
 
 section.#{$main-content-class} {
@@ -83,7 +75,7 @@ section.#{$main-content-class} {
     @include border-bottom(2px);
   }
   p {
-    @if $main-content-class==book {
+    @if $main-content-class==member {
       font-size: 12pt;
     } @else {
       font-size: $secondary-font-size + 6pt;
@@ -97,14 +89,37 @@ section.#{$main-content-class} {
   }
 }
 
+.card {
+    background: rgba(0, 0, 0, 0.3);
+    p {
+        color: white;
+    }
+    padding-right: 8px;
+    padding-left: 8px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
 .card-columns {
-  @include media-breakpoint-only(lg) {
-    column-count: 3;
-  }
-  @include media-breakpoint-only(md) {
-    column-count: 2;
-  }
-  @include media-breakpoint-only(sm) {
-    column-count: 1;
-  }
+    @include media-breakpoint-only(lg) {
+        column-count: 4;
+    }
+    @include media-breakpoint-only(md) {
+        column-count: 3;
+    }
+    @include media-breakpoint-only(sm) {
+        column-count: 2;
+    }
+}
+
+nav {
+    color: darken($brand-primary, 40%);
+    a {
+        color: white;
+    }
+}
+
+button {
+    background: rgba(0,0,0,0.6);
+        color: white;
 }
