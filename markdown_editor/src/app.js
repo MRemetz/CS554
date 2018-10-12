@@ -1,13 +1,11 @@
+import "bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
 import React from "react";
 import ReactDOM from "react-dom";
+import App from "./components/App";
 
-class HelloMessage extends React.Component {
-    render() {
-        return (
-                <div>Hello {this.props.name}</div>
-        );
-    }
+ReactDOM.render(<App />, document.getElementById("app"));
+
+if (module.hot) {
+    module.hot.accept();
 }
-
-var mountNode = document.getElementById("app");
-ReactDOM.render(<HelloMessage name="World" />, mountNode);
