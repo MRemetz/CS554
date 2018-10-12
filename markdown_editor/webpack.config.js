@@ -41,7 +41,7 @@ const config = {
     plugins: [
         new HtmlWebPackPlugin({
             inject: true,
-            template: "dist/index.html"
+            template: "templates/index.html"
         }),
         new webpack.HotModuleReplacementPlugin()
     ]
