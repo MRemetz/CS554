@@ -4,7 +4,7 @@ class MarkdownForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            value: 'Edit Markdown Here:'
+            value: '#'
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -25,7 +25,7 @@ class MarkdownForm extends React.Component {
             <form onSubmit={this.handleSubmit}>
                 <textarea value={this.state.value} onChange={this.handleChange} rows="15" cols="50"/>
                 <br></br>
-                <input type="submit" value="Submit" />
+                <input type="submit" value="Save" />
             </form>
         );
     }

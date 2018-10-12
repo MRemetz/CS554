@@ -12,11 +12,13 @@ export default function App() {
                 <div className="container">
                     <div className="row">
                         <div className="col-md-6">
-                            <h2>Text Area Here</h2>
+                            <h1>Markdown:</h1>
+                            <h5>Edit markdown here and click 'save' to download to a file</h5>
                             <MarkdownForm />
                         </div>
                         <div className="col-md-6">
-                            <h2>HTML Display</h2>
+                            <h1>Preview:</h1>
+                            <h5>Preview of how your markdown file will appear</h5>
                             <MarkdownForm />
                         </div>
                     </div>
