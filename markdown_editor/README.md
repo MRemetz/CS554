@@ -1,5 +1,5 @@
-## CS-554 Assignment 3:  Compiling SASS and Bootstrap
+## CS-554 Assignment 4:  A Markdown Note Downloader
 
-A product page featuring AI powered robotic companions to include in ones entourage and help fill various roles and functions.
+A react app to edit a markdown note, featuring a realtime display of the markdown and the ability to download the file.
 
-Page features responsive elements utilizing bootstrap's grid system and car/modal components, and takes advantage of CSS optimization using SASS.
+Page takes advantage of webpack/webpack-dev-server and react components 
