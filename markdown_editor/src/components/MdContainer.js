@@ -6,7 +6,7 @@ class MardownContainer extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            markdown: "Enter text Here"
+            markdown: null
         };
     }
 
@@ -22,7 +22,7 @@ class MardownContainer extends React.Component{
                 <div className="col-md-6">
                     <h1>Markdown:</h1>
                     <h5>Edit markdown here and click 'save' to download to a file</h5>
-                    <MarkdownForm input={this.updateMarkdown} />
+                    <MarkdownForm textInput={this.updateMarkdown} />
                 </div>
                 <div className="col-md-6">
                     <h1>Preview:</h1>

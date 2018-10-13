@@ -9,21 +9,21 @@ class MdPreview extends React.Component{
         this.state = {
             mdtext: this.props.mdText
         }
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    componentDidUpdate(prevProps) {
-        if (prevProps.mdText !== this.props.mdText){
-            this.setState({
-                mdText: this.props.mdText
-            });
-        }
+    handleSubmit(event) {
+        event.preventDefault();
     }
 
     render() {
         return(
-            <div>
-                <Markdown source={this.props.mdText} />
-            </div>
+            <form onSubmit={this.handleSubmit}>
+                <div>
+                    <Markdown source={this.props.mdText} />
+                </div>
+                <input type="submit" value="Save" />
+            </form>
         );
     }
 }
