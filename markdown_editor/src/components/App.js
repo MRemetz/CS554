@@ -1,5 +1,6 @@
 import React from "react";
 import MarkdownForm from "./Editor";
+import MdPreview from "./Display.js";
 
 export default function App() {
     return (
@@ -19,7 +20,7 @@ export default function App() {
                         <div className="col-md-6">
                             <h1>Preview:</h1>
                             <h5>Preview of how your markdown file will appear</h5>
-                            <MarkdownForm />
+                            <MdPreview />
                         </div>
                     </div>
                 </div>
