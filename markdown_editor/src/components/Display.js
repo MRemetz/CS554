@@ -1,5 +1,6 @@
 import React from "react";
-var Markdown = require("react-remarkable");Markdown
+
+var Markdown = require("react-remarkable");
 
 class MdPreview extends React.Component{
     render() {
@@ -10,4 +11,5 @@ class MdPreview extends React.Component{
         );
     }
 }
+
 export default MdPreview;
