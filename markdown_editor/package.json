@@ -4,8 +4,8 @@
   "description": "markdown editor with realtime display",
   "main": "index.js",
   "scripts": {
-      "start": "webpack-dev-server --mode development",
-      "build": "wepback"
+    "start": "webpack-dev-server --mode development",
+    "build": "wepback"
   },
   "author": "",
   "license": "ISC",
@@ -30,6 +30,6 @@
     "popper.js": "^1.14.4",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
-    "react-remarkable": "^1.1.3"
+    "remarkable": "^1.7.1"
   }
 }

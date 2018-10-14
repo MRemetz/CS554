@@ -1,7 +1,8 @@
 import React from "react";
 import MarkdownEditor from "./Editor.js";
 
-var Markdown = require("react-remarkable");
+var Remarkable = require('remarkable');
+var md = new Remarkable();
 
 class MdPreview extends React.Component{
     constructor(props){
@@ -12,10 +13,9 @@ class MdPreview extends React.Component{
     }
 
     render() {
+        const htmlObj = {__html: md.render(this.props.mdText)};
         return(
-            <>
-                <Markdown source={this.props.mdText} />
-            </>
+            <div dangerouslySetInnerHTML={htmlObj} />
         );
     }
 }

@@ -3,32 +3,46 @@ import ReactDOMServer from "react-dom/server";
 import MarkdownForm from "./Editor";
 import MdPreview from "./Display.js";
 
+var Remarkable = require('remarkable');
+var md = new Remarkable();
+
+
 class MardownContainer extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            markdown: null
+            markdown: null,
+            value: "html"
         };
-        this.htmlSubmit = this.htmlSubmit.bind(this);
-        this.markdownSubmit = this.markdownSubmit.bind(this);
+
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     updateMarkdown = event => {
         this.setState({markdown: event.target.value});
     }
 
-    htmlSubmit(event) {
-        event.preventDefault();
-        console.log(event.target);
-        const str = ReactDOMServer.renderToString(<MdPreview mdText={this.state.markdown} />);
-        console.log(str);
+    handleChange(event) {
+        this.setState({value: event.target.value});
     }
 
-    markdownSubmit(event) {
+    handleSubmit(event) {
         event.preventDefault();
-        console.log(event.target);
-        const str = ReactDOMServer.renderToString(<MdPreview mdText={this.state.markdown} />);
-        console.log(str);
+        const markdown = this.state.markdown;
+        if (!markdown){
+            alert("Input is currently empty. Enter text into editor before downloading to file")
+        }
+        else {
+            const filetype = this.state.value;
+            if (filetype == "html"){
+                var str = md.render(markdown)
+                console.log(str);
+            }
+            else{
+                console.log(markdown);
+            }
+        }
     }
 
     render() {
@@ -45,11 +59,15 @@ class MardownContainer extends React.Component{
                     <h1>Preview:</h1>
                     <h5>Preview of how your markdown file will appear</h5>
                     <MdPreview mdText={this.state.markdown} />
-                    <form onSubmit={this.markdownSubmit}>
-                        <input type="submit" value="Save as Markdown File" />
-                    </form>
-                    <form onSubmit={this.htmlSubmit}>
-                        <input type="submit" value="Save as HTML" />
+                    <form onSubmit={this.handleSubmit}>
+                        <label>
+                            Save file as:
+                            <select value={this.state.value} onChange={this.handleChange}>
+                                <option value="html">.html</option>
+                                <option value="markdown">.md</option>
+                            </select>
+                        </label>
+                        <input type="submit" value="Download" />
                     </form>
                 </div>
             </div>
