@@ -9,9 +9,11 @@ class MarkdownForm extends React.Component {
         const value = this.props.textInput;
 
         return (
-                <div id="textarea">
-                    <textarea type="text" onChange={value} rows="15" cols="35"/>
-                </div>
+            <div id="textarea">
+                <label>
+                    <textarea onChange={value} rows="15" cols="35"/>
+                </label>
+            </div>
         );
     }
 }

@@ -7,7 +7,7 @@ export default function App() {
             <main role="main">
                 <div className="jumbotron">
                     <h1 className="display-4">Markdown Note Editor</h1>
-                    <h4>by Max Remetz</h4>
+                    <h2>by Max Remetz</h2>
                 </div>
                 <div className="container">
                     <MarkdownContainer />
