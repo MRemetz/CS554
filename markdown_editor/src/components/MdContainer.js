@@ -75,7 +75,7 @@ class MardownContainer extends React.Component{
             <div className="row">
                 <div className="col-md-6">
                     <h1>Markdown:</h1>
-                    <p>Edit markdown here and click 'save' to download to a file</p>
+                    <p>Edit markdown here:</p>
                     <MarkdownForm textInput={this.updateMarkdown} />
                 </div>
                 <div className="col-md-6">
