@@ -6379,18 +6379,17 @@ section.member p {
   .card p {
     color: white; }
 
-.card-columns {
-  padding-right: 0px;
-  padding-left: 0px; }
-  @media (min-width: 992px) and (max-width: 1199.98px) {
-    .card-columns {
-      column-count: 4; } }
-  @media (min-width: 768px) and (max-width: 991.98px) {
-    .card-columns {
-      column-count: 3; } }
-  @media (min-width: 576px) and (max-width: 767.98px) {
-    .card-columns {
-      column-count: 2; } }
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .card-columns {
+    column-count: 4; } }
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .card-columns {
+    column-count: 3; } }
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .card-columns {
+    column-count: 2; } }
 
 nav {
   color: #874500; }
