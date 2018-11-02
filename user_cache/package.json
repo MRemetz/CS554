@@ -1,11 +1,17 @@
 {
-  "name": "Assignment_5",
+  "name": "user_cache",
   "version": "1.0.0",
-  "description": "User cache system using redis",
-  "main": "index.js",
-    "scripts": {
-        "start": node server.js
+  "description": "Assignment 5 - system for checking users in database utilizing caching via redis",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
   },
   "author": "Max Remetz",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "bluebird": "^3.5.2",
+    "express": "^4.16.4",
+    "node-redis": "^0.1.7",
+    "redis": "^2.8.0"
+  }
 }
