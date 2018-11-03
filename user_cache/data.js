@@ -5,17 +5,17 @@ module.exports = {
     getById(id) {
         return new Promise((resolve, reject) => {
             setTimeout(() => {
-                fs.readFile("./data.js", "utf-8", (error, data) => {
+                fs.readFile("./lab5.json", "utf-8", (error, data) => {
                     if (error) {
                         reject(error);
-                        return;
                     }
-                    if (null? data[id]) {
-                        reject(new Error("User not found"));
+                    var userData = JSON.parse(data);
+                    if (userData[id] != null){
+                        resolve(userData[id])
                     } else {
-                        resolve(data[id]);
-                    }
-                });
-            }, 5000);
+                        reject(new Error("User not found"));
+                    }});
+            }, 1000);
         });
+    }
 }
