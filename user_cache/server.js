@@ -11,28 +11,51 @@ bluebird.promisifyAll(redis.Multi.prototype);
 
 
 app.get("/api/people/history", async (req, res) => {
+    await client
+        .lrange("recentList",
+                0,
+                19,
+                function(err, reply) {
+                    var list = [];
+                    for (var i in reply){
+                        var user = JSON.parse(reply[i]);
+                        list.push(user);
+                     }
+                    res.send(list);
+                });
 });
 
 app.get("/api/people/:id", async (req, res, next) => {
     let userInCache = await client.getAsync(req.params.id);
     if (userInCache) {
-        console.log("found in cache");
         res.send(userInCache);
+        client.lpush(
+            "recentList",
+            userInCache
+        );
     } else {
         next();
     }
 });
 
 app.get("/api/people/:id", async (req, res) => {
-    let user = await data.getById(req.params.id);
-    console.log(user)
-
-    res.json(user);
-
-    let cachedUser = await client.setAsync(
-        req.params.id,
-        JSON.stringify(user)
-    );
+    data
+        .getById(req.params.id)
+        .then(user =>{
+            res.send(user);
+            client.setexAsync(
+                req.params.id,
+                300,
+                JSON.stringify(user)
+            );
+            client.lpush(
+                "recentList",
+                JSON.stringify(user)
+            );
+        })
+        .catch(() =>{
+            res.status(404).json({ error: "User not Found" });
+        });
 });
 
 app.listen(3000, () => {

@@ -10,12 +10,14 @@ module.exports = {
                         reject(error);
                     }
                     var userData = JSON.parse(data);
-                    if (userData[id] != null){
-                        resolve(userData[id])
-                    } else {
-                        reject(new Error("User not found"));
-                    }});
-            }, 1000);
+                    for (var i in userData) {
+                        if (userData[i] && userData[i]["id"] == id){
+                            resolve(userData[i]);
+                        }
+                    }
+                    reject(new Error("User not found"));
+                });
+            }, 5000);
         });
     }
 }
