@@ -12,17 +12,14 @@ bluebird.promisifyAll(redis.Multi.prototype);
 
 app.get("/api/people/history", async (req, res) => {
     await client
-        .lrange("recentList",
-                0,
-                19,
-                function(err, reply) {
-                    var list = [];
-                    for (var i in reply){
-                        var user = JSON.parse(reply[i]);
-                        list.push(user);
-                     }
-                    res.send(list);
-                });
+        .lrange("recentList", 0, 19, function(err, reply) {
+            var list = [];
+            for (var i in reply){
+                var user = JSON.parse(reply[i]);
+                list.push(user);
+            }
+            res.send(list);
+        });
 });
 
 app.get("/api/people/:id", async (req, res, next) => {
@@ -43,9 +40,8 @@ app.get("/api/people/:id", async (req, res) => {
         .getById(req.params.id)
         .then(user =>{
             res.send(user);
-            client.setexAsync(
+            client.setAsync(
                 req.params.id,
-                300,
                 JSON.stringify(user)
             );
             client.lpush(
