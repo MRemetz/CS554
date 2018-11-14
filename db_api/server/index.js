@@ -27,12 +27,17 @@ app.get("/api/people/:id", async (req, res) => {
 
 app.post("/api/people", async (req, res) => {
     try {
+        let fields = ["id", "first_name", "last_name", "email", "gender", "ip_address"];
+        let missing = [];
+        for (var i = 0; i < fields.length; i++) {
+            if(!req.body[fields[i]]) missing.push(fields[i]);
+        }
+        if (missing.length > 0) throw {error: `The following fields are missing from request body: ${missing}`};
+
         let response = await nrpSender.sendMessage({
             redis: redisConnection,
             eventName: "POST",
-            data: {
-                message: req.body.message
-            }
+            data: req.body
         });
 
         res.json(response);
@@ -50,13 +55,11 @@ app.delete("/api/people/:id", async (req, res) => {
             redis: redisConnection,
             eventName: "DELETE",
             data: {
-                message: req.params.id
+                id: req.params.id
             }
         });
 
-        res.json({
-            message: "person with id: " + id + " successfully deleted"
-        });
+        res.json(response);
 
     } catch (e) {
         res.json({
@@ -67,6 +70,9 @@ app.delete("/api/people/:id", async (req, res) => {
 
 app.put("/api/people/:id", async (req, res) => {
     try {
+
+        if (req.body.id) throw {error: '\'id\' cannot be changed: Please remove \'id\' from request body'}
+
         let response = await nrpSender.sendMessage({
             redis: redisConnection,
             eventName: "PUT",
@@ -85,6 +91,5 @@ app.put("/api/people/:id", async (req, res) => {
 });
 
 app.listen(3000, () => {
-    console.log("We've now got a server!");
-    console.log("Your routes will be running on http://localhost:3000");
+    console.log("Loading Data...this takes a few seconds");
 });
