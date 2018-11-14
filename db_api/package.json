@@ -11,11 +11,11 @@
   "author": "Max Remetz",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.18.0",
     "bluebird": "^3.5.2",
     "body-parser": "^1.17.0",
     "concurrently": "^4.0.1",
     "express": "^4.16.4",
-    "node-fetch": "^2.3.0",
     "node-redis": "^0.1.7",
     "node-redis-pubsub": "^1.0.2",
     "node-uuid": "^1.4.7",
