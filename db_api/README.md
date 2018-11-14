@@ -1,6 +1,6 @@
 ## CS-554 Assignment 6: Data API
 
-A minimal api utilizing redis and a web worked.
+A minimal api utilizing redis and a web worker to access and manipulate data in a local dataset.
 
 ## Server
 `GET /api/people/:id`
