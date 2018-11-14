@@ -7,7 +7,7 @@ async function loadData() {
     const res = await axios.get(dataURL);
     dummyData = res.data;
     if (dummyData) {
-        console.log("Data loaded successfully")
+        console.log("Data loaded successfully\n")
         console.log("We've now got a server!");
         console.log("Your routes will be running on http://localhost:3000");
     }
