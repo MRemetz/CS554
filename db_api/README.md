@@ -16,7 +16,7 @@ A minimal api utilizing redis and a web worker to access and manipulate data in 
 - Publishes a message to request that the worker updates a person, and renders JSON of the person updated (or of an error, should once occur)
 
 ## Worker
-- Downloads dummy data set to memory
+- **Downloads** dummy data set to memory
 - Responds to a **GET** request by providing the person listed at the supplied ID
 - Responds to a **POST** request by adding a person with the supplied information to the dataset
 - Responds to a **PUT** request by updating a person with the supplied information in the dataset
