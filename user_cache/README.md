@@ -2,7 +2,8 @@
 
 A minimal api utilizing redis. Servics following routes:
 
-_/api/people/history_: 
+_/api/people/history_:
+
 responds with an array of the last 20 users in the cache from the recently viewed list
 
 _/api/people/:id_:
