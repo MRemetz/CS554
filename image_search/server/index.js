@@ -9,7 +9,7 @@ var io = require('socket.io')(http);
 app.use(bodyParser.json());
 
 app.get('/', function(req, res){
-    res.sendFile(__dirname + '/server/src/index.html');
+    res.sendFile(__dirname + '/src/index.html');
   });
 
 io.on('connection', function (socket) {
