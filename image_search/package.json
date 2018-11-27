@@ -1,0 +1,25 @@
+{
+  "name": "assgnment7server",
+  "version": "1.0.0",
+  "description": "server for assignment 7",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "concurrently \"node worker/worker.js\" \"node server/index.js\"",
+    "work": "node worker/worker.js"
+  },
+  "author": "Max Remetz",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "bluebird": "^3.5.2",
+    "body-parser": "^1.17.0",
+    "concurrently": "^4.0.1",
+    "express": "^4.15.2",
+    "node-redis": "^0.1.7",
+    "node-redis-pubsub": "^1.0.2",
+    "node-uuid": "^1.4.7",
+    "redis": "^2.8.0",
+    "socket.io": "^2.1.1"
+  }
+}
