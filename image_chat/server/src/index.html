@@ -11,19 +11,27 @@
   <form action="" target="_self">
     Username:
     <input id="username" autocomplete="off" />
-    <br><br>
+    <br>
     Message:
     <input id="message" autocomplete="off" />
-    <br><br>
+    <br>
     Image query:
-    <input id="query" autocomplete="off"/>
-    <br><br>
+    <input id="query" autocomplete="off" />
+    <br>
     <button>Send</button>
   </form>
+  <div>
+    <h2>See what you and others have searched for recently:</h2>
+    <p id="bottom"></p>
+  </div>
 </body>
 <script src="/socket.io/socket.io.js"></script>
 <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
 <script>
+
+  var target = $('#bottom');
+  var count = 0;
+
   $(function () {
     var socket = io();
     $('form').submit(function () {
@@ -34,12 +42,31 @@
         query: $('#query').val()
       };
       socket.emit('chat message', obj);
-      $('#message').val('');
-      $('#query').val('');
+      //$('#message').val('');
+      //$('#query').val('');
       return false;
     });
-    socket.on('chat message', function (msg) {
-      $('#messages').append($('<li>').text(msg));
+
+    socket.on('chat message', function (response) {
+      var newId = `message_${count}`
+      var newElement = document.createElement('div');
+      newElement.id = newId;
+
+      target.prepend(newElement);
+
+      $(`#${newId}`).append(`<br><b>${response.username}</b><br>`);
+      $(`#${newId}`).append(`<p>${response.message}</p><br>`);
+      
+      var images = response.images;
+      for (var i = 0; i < images.length; i++){
+        var image = `<img src=${images[i]} height=100>`;
+        $(`#${newId}`).append(image);
+      }
+      
+      target.prepend(newElement);
+      target = $(`#message_${count}`)
+      count++;
+
     });
   });
 </script>

@@ -12,20 +12,19 @@ app.get('/', function(req, res){
     res.sendFile(__dirname + '/src/index.html');
   });
 
-io.on('connection', function (socket) {
+io.on('connection', async function (socket) {
     //console.log('a user connected');
-    socket.on('chat message', function(msg) {
+    socket.on('chat message', async function(msg) {
         try {
             let response = await nrpSender.sendMessage({
                 redis: redisConnection,
                 eventName: "GET",
                 data: msg
             });
+            io.emit('chat message', response)
     
         } catch (e) {
-            res.json({
-                error: e.error
-            });
+            console.log(e);
         }
         //io.emit('chat message', msg);
     });

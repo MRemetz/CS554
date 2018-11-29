@@ -10,7 +10,6 @@ const defaultRedisConnection = new NRP(nrpConfig);
 
 const defaultMessageConfig = {
   data: {},
-  timeout: 1000,
   eventName: "send",
   redis: defaultRedisConnection,
   expectsResponse: true
@@ -21,7 +20,6 @@ const sendMessage = (messageConfig = defaultMessageConfig) => {
     let settings = Object.assign({}, defaultMessageConfig, messageConfig);
 
     let messageId = uuid.v4();
-    let killswitchTimeoutId = undefined;
     let redisConnection = settings.redis;
     let eventName = settings.eventName;
     let outgoingEventName = `${eventName}:request:${messageId}`;
@@ -49,15 +47,7 @@ const sendMessage = (messageConfig = defaultMessageConfig) => {
         shutoffEvents.forEach(shutOff => {
           shutOff();
         });
-        clearTimeout(killswitchTimeoutId);
       };
-
-      if (settings.timeout >= 0) {
-        killswitchTimeoutId = setTimeout(() => {
-          reject(new Error("timed out"));
-          endMessageLifeCycle();
-        }, settings.timeout);
-      }
     }
 
     redisConnection.emit(outgoingEventName, {
