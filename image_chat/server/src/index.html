@@ -5,10 +5,20 @@
   <title>Image Chat</title>
 </head>
 
+<h2>Image Chat</h2>
+
 <body>
-  <ul id="message"></ul>
-  <form action="">
-    <input id="m" autocomplete="off" /><button>Send</button>
+  <form action="" target="_self">
+    Username:
+    <input id="username" autocomplete="off" />
+    <br><br>
+    Message:
+    <input id="message" autocomplete="off" />
+    <br><br>
+    Image query:
+    <input id="query" autocomplete="off"/>
+    <br><br>
+    <button>Send</button>
   </form>
 </body>
 <script src="/socket.io/socket.io.js"></script>
@@ -16,12 +26,19 @@
 <script>
   $(function () {
     var socket = io();
-    $('form').submit(function(){
-      socket.emit('chat message', $('#m').val());
-      $('#m').val('');
+    $('form').submit(function () {
+      $('#username').prop('disabled', true);
+      var obj = {
+        username: $('#username').val(),
+        message: $('#message').val(),
+        query: $('#query').val()
+      };
+      socket.emit('chat message', obj);
+      $('#message').val('');
+      $('#query').val('');
       return false;
     });
-    socket.on('chat message', function(msg){
+    socket.on('chat message', function (msg) {
       $('#messages').append($('<li>').text(msg));
     });
   });

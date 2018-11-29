@@ -13,9 +13,21 @@ app.get('/', function(req, res){
   });
 
 io.on('connection', function (socket) {
-    console.log('a user connected');
+    //console.log('a user connected');
     socket.on('chat message', function(msg) {
-        io.emit('chat message', msg);
+        try {
+            let response = await nrpSender.sendMessage({
+                redis: redisConnection,
+                eventName: "GET",
+                data: msg
+            });
+    
+        } catch (e) {
+            res.json({
+                error: e.error
+            });
+        }
+        //io.emit('chat message', msg);
     });
 
     socket.on('disconnect', function () {

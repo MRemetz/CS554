@@ -1,5 +1,7 @@
 const redisConnection = require("./redis-connection");
-//const axios = require('axios');
+const axios = require('axios');
+
+const pixKey = "10836477-0e09ac732aa67335a41e51c42"
 
 function submitEvent(event, reqId, data, name) {
     if (data == "loading") {
@@ -20,26 +22,13 @@ redisConnection.on("GET:request:*", async (message, channel) => {
     var failedEvent = `${eventName}:failed:${requestId}`;
     let successEvent = `${eventName}:success:${requestId}`;
 
-    if (dummyData === null) {
-        submitEvent(failedEvent, requestId, "loading", eventName);
+    try {
+        submitEvent(successEvent, requestId, dummyData[i], eventName);
 
-    } else {
-        try {
-            let id = message.data.id;
-            for (var i in dummyData) {
-                if (dummyData[i] && dummyData[i]["id"] == id) {
-                    submitEvent(successEvent, requestId, dummyData[i], eventName);
-                    break;
-                }
-            }
-            throw 'User not found'
-
-        } catch (e) {
-            data = {
-                error: `Web worker encountered error: ${e}`
-            }
-            submitEvent(failedEvent, requestId, data, eventName);
+    } catch (e) {
+        data = {
+            error: `Web worker encountered error: ${e}`
         }
+        submitEvent(failedEvent, requestId, data, eventName);
     }
 });
-
