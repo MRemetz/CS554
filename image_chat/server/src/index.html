@@ -20,8 +20,8 @@
     <br>
     <button>Send</button>
   </form>
+  <hr>
   <div>
-    <h2>See what you and others have searched for recently:</h2>
     <p id="bottom"></p>
   </div>
 </body>
@@ -54,8 +54,8 @@
 
       target.prepend(newElement);
 
-      $(`#${newId}`).append(`<br><b>${response.username}</b><br>`);
-      $(`#${newId}`).append(`<p>${response.message}</p><br>`);
+      $(`#${newId}`).append(`<br>`)
+      $(`#${newId}`).append($(`<p>`).text(`${response.username}: ${response.message}`));
       
       var images = response.images;
       for (var i = 0; i < images.length; i++){
