@@ -40,10 +40,9 @@ redisConnection.on("GET:request:*", async (message, channel) => {
         submitEvent(successEvent, requestId, result, eventName);
 
     } catch (e) {
-        console.log(e.response.data);
-        /*data = {
-            error: `Web worker encountered error: ${e}`
+        data = {
+            error: `Web worker encountered error: ${e.response.data}`
         }
-        submitEvent(failedEvent, requestId, data, eventName);*/
+        submitEvent(failedEvent, requestId, data, eventName);
     }
 });

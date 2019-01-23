@@ -13,7 +13,6 @@ app.get('/', function(req, res){
   });
 
 io.on('connection', async function (socket) {
-    //console.log('a user connected');
     socket.on('chat message', async function(msg) {
         try {
             let response = await nrpSender.sendMessage({
@@ -26,7 +25,7 @@ io.on('connection', async function (socket) {
         } catch (e) {
             console.log(e);
         }
-        //io.emit('chat message', msg);
+
     });
 
     socket.on('disconnect', function () {

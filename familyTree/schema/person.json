@@ -1,0 +1,11 @@
+{
+    "_id": "uuid",
+    "firstName": "John",
+    "middleName": "Andrew",
+    "lastName": "Smith",
+    "age": 40,
+    "gender": "Male",
+    "parents": ["uuid", "uuid"],
+    "children": ["uuid", "uuid", "uuid"],
+    "spouse_id": "uuid"
+}

@@ -1,0 +1,36 @@
+.line-chart{
+    border: 1px solid lightgray;
+}
+
+#center{
+	text-align: center;
+}
+.navbar{
+    width: 100%;
+}
+.nav-item, a, .user{
+    color: white;
+    padding: 0 5px 0 5px;
+}
+a:hover {
+    color: turquoise;
+    text-decoration: none;
+}
+.user{
+    float: right;
+    margin: 10px;
+}
+#treeWrapper{
+    width: 100%;
+    height: 700px;
+    border: lightgray;
+    border-style: solid;
+    margin: 30px 0 0 0;
+}
+.add-member{
+    padding: 0 10px 10px 10px;
+}
+
+#sendEmail{
+    color: turquoise;
+}
